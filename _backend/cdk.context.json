@@ -1,0 +1,31 @@
+{
+	"globals": {
+		"appName": "test",
+		"hosting": {
+			"ghTokenName": "github-token",
+			"ghOwner": "focusOtter",
+			"repo": "REPO_NAME"
+		}
+	},
+	"main": {
+		"stage": "prod",
+		"env": {
+			"account": "123",
+			"region": "us-east-1"
+		}
+	},
+	"staging": {
+		"stage": "staging",
+		"env": {
+			"account": "123",
+			"region": "us-east-1"
+		}
+	},
+	"develop": {
+		"stage": "dev",
+		"env": {
+			"account": "123",
+			"region": "us-east-1"
+		}
+	}
+}
