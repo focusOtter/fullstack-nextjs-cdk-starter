@@ -6,7 +6,12 @@
 		"build": "tsc",
 		"watch": "tsc -w",
 		"test": "jest",
-		"cdk": "cdk"
+		"cdk": "cdk",
+		"codegen": "npx @aws-amplify/cli codegen",
+		"codegen:local": "AWS_PROFILE=focus-otter-sandbox npx @aws-amplify/cli codegen",
+		"build:resolvers": "node utils/build.mjs",
+		"predeploy": "npm run codegen && npm build:resolvers",
+		"deploy": "npx aws-cdk deploy"
 	},
 	"devDependencies": {
 		"@types/jest": "^29.5.11",

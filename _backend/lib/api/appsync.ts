@@ -1,81 +1,91 @@
 import { Construct } from 'constructs'
-import {
-	AmplifyGraphqlApi,
-	AmplifyGraphqlDefinition,
-} from '@aws-amplify/graphql-api-construct'
 import * as path from 'path'
 import {
 	AuthorizationType,
-	Code,
+	Definition,
+	GraphqlApi,
+	FieldLogLevel,
 	FunctionRuntime,
+	Code,
 } from 'aws-cdk-lib/aws-appsync'
-import { IRole, PolicyStatement } from 'aws-cdk-lib/aws-iam'
+import { IRole } from 'aws-cdk-lib/aws-iam'
 import { UserPool } from 'aws-cdk-lib/aws-cognito'
+import { Table } from 'aws-cdk-lib/aws-dynamodb'
 
-type AmplifyGraphQLAPIProps = {
+type AppSyncAPIProps = {
 	appName: string
 	userPool: UserPool
 	authRole: IRole
 	unauthRole: IRole
 	identityPoolId: string
+	todoTable: Table
 }
 
-export const createAmplifyGraphQLAPI = (
-	scope: Construct,
-	props: AmplifyGraphQLAPIProps
-) => {
-	const api = new AmplifyGraphqlApi(scope, `${props.appName}`, {
-		definition: AmplifyGraphqlDefinition.fromFiles(
-			path.join(__dirname, 'schema.graphql')
-		),
-		authorizationModes: {
-			defaultAuthorizationMode: AuthorizationType.USER_POOL,
-			userPoolConfig: {
-				userPool: props.userPool,
+export const createAppSyncAPI = (scope: Construct, props: AppSyncAPIProps) => {
+	const api = new GraphqlApi(scope, `${props.appName}`, {
+		name: props.appName,
+		definition: Definition.fromFile(path.join(__dirname, 'schema.graphql')),
+		authorizationConfig: {
+			defaultAuthorization: {
+				authorizationType: AuthorizationType.USER_POOL,
+				userPoolConfig: {
+					userPool: props.userPool,
+				},
 			},
-			iamConfig: {
-				authenticatedUserRole: props.authRole,
-				unauthenticatedUserRole: props.unauthRole,
-				identityPoolId: props.identityPoolId,
-			},
+			additionalAuthorizationModes: [
+				{
+					authorizationType: AuthorizationType.IAM,
+				},
+			],
+		},
+		logConfig: {
+			fieldLogLevel: FieldLogLevel.ALL,
 		},
 	})
 
-	// add bedrock as a datasource
-	const bedrockDataSource = api.addHttpDataSource(
-		'bedrockDS',
-		'https://bedrock-runtime.us-east-1.amazonaws.com',
-		{
-			authorizationConfig: {
-				signingRegion: 'us-east-1',
-				signingServiceName: 'bedrock',
-			},
-		}
-	)
+	// Add the Datasource that my resolvers will make use of
+	const todosDS = api.addDynamoDbDataSource('TodoDS', props.todoTable)
 
-	// Allow datasource to invoke claude
-	bedrockDataSource.grantPrincipal.addToPrincipalPolicy(
-		new PolicyStatement({
-			resources: [
-				'arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-v2',
-			],
-			actions: ['bedrock:InvokeModel'],
-		})
-	)
+	// Add the resolvers that will make use of the datasource
+	api.createResolver('getTodoResolver', {
+		typeName: 'Query',
+		fieldName: 'getTodo',
+		dataSource: todosDS,
+		runtime: FunctionRuntime.JS_1_0_0,
+		code: Code.fromAsset(path.join(__dirname, 'JS_functions/getTodo.js')),
+	})
 
-	// create a unit resolver that connects to bedrock and returns a string of words
-	const generateWordSearchWordsResolver = api.addResolver(
-		'generateWordSearchWordsResolver',
-		{
-			dataSource: bedrockDataSource,
-			typeName: 'Mutation',
-			fieldName: 'generateWordSearchWords',
-			code: Code.fromAsset(
-				path.join(__dirname, 'JS_functions/generateWordSearchWords.js')
-			),
-			runtime: FunctionRuntime.JS_1_0_0,
-		}
-	)
+	api.createResolver('listTodosResolver', {
+		typeName: 'Query',
+		fieldName: 'listTodos',
+		dataSource: todosDS,
+		runtime: FunctionRuntime.JS_1_0_0,
+		code: Code.fromAsset(path.join(__dirname, 'JS_functions/listTodos.js')),
+	})
+
+	api.createResolver('createTodoResolver', {
+		typeName: 'Mutation',
+		fieldName: 'createTodo',
+		dataSource: todosDS,
+		runtime: FunctionRuntime.JS_1_0_0,
+		code: Code.fromAsset(path.join(__dirname, 'JS_functions/createTodo.js')),
+	})
+
+	api.createResolver('updateTodoResolver', {
+		typeName: 'Mutation',
+		fieldName: 'updateTodo',
+		dataSource: todosDS,
+		runtime: FunctionRuntime.JS_1_0_0,
+		code: Code.fromAsset(path.join(__dirname, 'JS_functions/updateTodo.js')),
+	})
+
+	api.createResolver('deleteTodoResolver', {
+		typeName: 'Mutation',
+		fieldName: 'deleteTodo',
+		dataSource: todosDS,
+		runtime: FunctionRuntime.JS_1_0_0,
+		code: Code.fromAsset(path.join(__dirname, 'JS_functions/deleteTodo.js')),
+	})
 
 	return api
 }
