@@ -8,7 +8,11 @@ export function request(ctx: Context<UpdateTodoInput>) {
 	const now = util.time.nowISO8601()
 
 	// update it if owner.
-	ddb.update({ key: { id }, update: { ...ctx.args, updatedAt: now } })
+	return ddb.update({
+		key: { id },
+		update: { ...ctx.args, updatedAt: now },
+		condition: { owner: { eq: owner } },
+	})
 }
 
 export function response(ctx: Context) {

@@ -9,19 +9,23 @@ import { CreateTodoInput } from '../codegen/API'
 
 export function request(ctx: Context<CreateTodoInput>) {
 	const id = util.autoId()
-	const owner = (ctx.identity as AppSyncIdentityCognito).username
+	const identity = ctx.identity as AppSyncIdentityCognito
 	const now = util.time.nowISO8601()
 
 	const item = {
 		id,
-		owner,
+		owner: identity.username,
 		createdAt: now,
 		updatedAt: now,
 		...ctx.args,
 	}
 
-	//  create a new todo. If already exists, updates it.
-	ddb.put({ key: { id }, item })
+	// only signed in users can use this route based on schema.
+	// create a new todo.
+	return ddb.put({
+		key: { id },
+		item,
+	})
 }
 
 export function response(ctx: Context) {
