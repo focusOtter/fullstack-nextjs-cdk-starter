@@ -5,7 +5,7 @@ projects:
       - codegen/**/*.ts
     excludes:
       - ./amplify/**
-      - API.ts
+      - codegen/API.ts
     extensions:
       amplify:
         codeGenTarget: typescript
