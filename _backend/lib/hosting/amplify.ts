@@ -17,6 +17,7 @@ type AmplifyHostingProps = {
 	ghOwner: string
 	repo: string
 	ghTokenName: string
+	environmentVariables?: { [key: string]: string }
 }
 
 export function createAmplifyHosting(
@@ -62,8 +63,8 @@ export function createAmplifyHosting(
 		platform: amplify.Platform.WEB_COMPUTE,
 		autoBranchDeletion: true,
 		environmentVariables: {
-			myAmplifyEnv: 'test', //process.env.myAmplifyEnv on frontend
 			_CUSTOM_IMAGE: 'amplify:al2023', // Amplify build image to support NextJS 14
+			...props.environmentVariables,
 		},
 		buildSpec: BuildSpec.fromObjectToYaml({
 			version: 1,
