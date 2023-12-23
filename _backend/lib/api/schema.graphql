@@ -1,5 +1,5 @@
 type Query {
-	getTodos(id: String!): Todo! @aws_cognito_user_pools
+	getTodo(id: String!): Todo! @aws_cognito_user_pools
 	listTodos(limit: Int, nextToken: String): PaginatedTodos!
 		@aws_iam
 		@aws_cognito_user_pools

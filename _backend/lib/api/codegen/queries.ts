@@ -8,8 +8,8 @@ type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryOutput: OutputType;
 };
 
-export const getTodos = /* GraphQL */ `query GetTodos($id: String!) {
-  getTodos(id: $id) {
+export const getTodo = /* GraphQL */ `query GetTodo($id: String!) {
+  getTodo(id: $id) {
     id
     title
     description
@@ -20,7 +20,7 @@ export const getTodos = /* GraphQL */ `query GetTodos($id: String!) {
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetTodosQueryVariables, APITypes.GetTodosQuery>;
+` as GeneratedQuery<APITypes.GetTodoQueryVariables, APITypes.GetTodoQuery>;
 export const listTodos = /* GraphQL */ `query ListTodos($limit: Int, $nextToken: String) {
   listTodos(limit: $limit, nextToken: $nextToken) {
     todos {

@@ -1,5 +1,8 @@
 {
 	"name": "backend",
+	"bin": {
+		"backend": "bin/backend.js"
+	},
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
@@ -7,13 +10,15 @@
 		"watch": "tsc -w",
 		"test": "jest",
 		"cdk": "cdk",
-		"codegen": "npx @aws-amplify/cli codegen",
+		"codegen": "cd lib/api && npx @aws-amplify/cli codegen && cd ../..",
 		"build:resolvers": "node utils/build.mjs",
-		"predeploy": "npm run codegen && npm build:resolvers",
+		"predeploy": "npm run codegen && npm run build:resolvers",
 		"deploy": "npx aws-cdk deploy",
+		"predeploy:local": "npm run codegen && npm run build:resolvers",
 		"deploy:local": "npx aws-cdk deploy --profile focus-otter-sandbox --outputs-file output.json"
 	},
 	"devDependencies": {
+		"@types/git-branch": "^2.0.5",
 		"@types/jest": "^29.5.11",
 		"@types/node": "20.10.4",
 		"aws-cdk": "2.116.1",

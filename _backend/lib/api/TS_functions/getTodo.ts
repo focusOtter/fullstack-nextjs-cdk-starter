@@ -1,8 +1,8 @@
 import { Context } from '@aws-appsync/utils'
 import * as ddb from '@aws-appsync/utils/dynamodb'
-import { GetTodosQueryVariables } from '../codegen/API'
+import { GetTodoQueryVariables } from '../codegen/API'
 
-export function request(ctx: Context<GetTodosQueryVariables>) {
+export function request(ctx: Context<GetTodoQueryVariables>) {
 	// get a todo by its id if it's the owner
 	ddb.get({ key: { id: ctx.args.id } })
 }

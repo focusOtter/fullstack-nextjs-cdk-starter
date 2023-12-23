@@ -83,12 +83,12 @@ export type DeleteTodoMutation = {
   },
 };
 
-export type GetTodosQueryVariables = {
+export type GetTodoQueryVariables = {
   id: string,
 };
 
-export type GetTodosQuery = {
-  getTodos:  {
+export type GetTodoQuery = {
+  getTodo:  {
     __typename: "Todo",
     id: string,
     title: string,

@@ -30,7 +30,6 @@ new BackendStack(
 	stackName,
 	{
 		stackName,
-		appName,
 		env: context.env,
 	},
 	context
