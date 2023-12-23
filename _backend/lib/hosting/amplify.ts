@@ -25,11 +25,11 @@ export function createAmplifyHosting(
 ) {
 	const amplifyDeployCDKRole = new Role(
 		scope,
-		'allow-amplify-deploy-cdk-role',
+		`${props.appName}-allow-amplify-deploy-cdk-role`,
 		{
 			assumedBy: new ServicePrincipal('amplify.amazonaws.com'),
 			description: `Role assumed by Amplify Hosting for deploying aws cdk`,
-			roleName: `${props.repo}-amplify-deploy-from-cdk`,
+			roleName: `${props.appName}-amplify-deploy-from-cdk`,
 			maxSessionDuration: Duration.hours(1),
 			inlinePolicies: {
 				CdkDeploymentPolicy: new PolicyDocument({
@@ -63,6 +63,7 @@ export function createAmplifyHosting(
 		autoBranchDeletion: true,
 		environmentVariables: {
 			myAmplifyEnv: 'test', //process.env.myAmplifyEnv on frontend
+			_CUSTOM_IMAGE: 'amplify:al2023', // Amplify build image to support NextJS 14
 		},
 		buildSpec: BuildSpec.fromObjectToYaml({
 			version: 1,
