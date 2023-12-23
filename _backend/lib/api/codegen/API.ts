@@ -21,9 +21,9 @@ export type Todo = {
 
 export type UpdateTodoInput = {
   id: string,
-  title: string,
-  description: string,
-  isCompleted: boolean,
+  title?: string | null,
+  description?: string | null,
+  isCompleted?: boolean | null,
 };
 
 export type PaginatedTodos = {
@@ -102,6 +102,7 @@ export type GetTodosQuery = {
 
 export type ListTodosQueryVariables = {
   limit?: number | null,
+  nextToken?: string | null,
 };
 
 export type ListTodosQuery = {

@@ -5,8 +5,9 @@ import {
 	util,
 } from '@aws-appsync/utils'
 import * as ddb from '@aws-appsync/utils/dynamodb'
+import { CreateTodoInput } from '../codegen/API'
 
-export function request(ctx: Context) {
+export function request(ctx: Context<CreateTodoInput>) {
 	const id = util.autoId()
 	const owner = (ctx.identity as AppSyncIdentityCognito).username
 	const now = util.time.nowISO8601()

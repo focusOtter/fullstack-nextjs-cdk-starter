@@ -21,8 +21,8 @@ export const getTodos = /* GraphQL */ `query GetTodos($id: String!) {
   }
 }
 ` as GeneratedQuery<APITypes.GetTodosQueryVariables, APITypes.GetTodosQuery>;
-export const listTodos = /* GraphQL */ `query ListTodos($limit: Int) {
-  listTodos(limit: $limit) {
+export const listTodos = /* GraphQL */ `query ListTodos($limit: Int, $nextToken: String) {
+  listTodos(limit: $limit, nextToken: $nextToken) {
     todos {
       id
       title
