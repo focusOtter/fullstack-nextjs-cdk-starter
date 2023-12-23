@@ -10,7 +10,7 @@
 	"main": {
 		"stage": "prod",
 		"env": {
-			"account": "123",
+			"account": "842537737558",
 			"region": "us-east-1"
 		}
 	},
