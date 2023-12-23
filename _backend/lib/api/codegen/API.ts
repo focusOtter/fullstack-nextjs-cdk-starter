@@ -15,8 +15,8 @@ export type Todo = {
   description: string,
   isCompleted: boolean,
   owner: string,
-  createdAt?: string | null,
-  updatedAt?: string | null,
+  createdAt: string,
+  updatedAt: string,
 };
 
 export type UpdateTodoInput = {
@@ -44,8 +44,8 @@ export type CreateTodoMutation = {
     description: string,
     isCompleted: boolean,
     owner: string,
-    createdAt?: string | null,
-    updatedAt?: string | null,
+    createdAt: string,
+    updatedAt: string,
   },
 };
 
@@ -61,8 +61,8 @@ export type UpdateTodoMutation = {
     description: string,
     isCompleted: boolean,
     owner: string,
-    createdAt?: string | null,
-    updatedAt?: string | null,
+    createdAt: string,
+    updatedAt: string,
   },
 };
 
@@ -78,8 +78,8 @@ export type DeleteTodoMutation = {
     description: string,
     isCompleted: boolean,
     owner: string,
-    createdAt?: string | null,
-    updatedAt?: string | null,
+    createdAt: string,
+    updatedAt: string,
   },
 };
 
@@ -95,8 +95,8 @@ export type GetTodoQuery = {
     description: string,
     isCompleted: boolean,
     owner: string,
-    createdAt?: string | null,
-    updatedAt?: string | null,
+    createdAt: string,
+    updatedAt: string,
   },
 };
 
@@ -115,8 +115,8 @@ export type ListTodosQuery = {
       description: string,
       isCompleted: boolean,
       owner: string,
-      createdAt?: string | null,
-      updatedAt?: string | null,
+      createdAt: string,
+      updatedAt: string,
     } | null >,
     nextToken?: string | null,
   },

@@ -13,6 +13,7 @@ export function request(ctx: Context<CreateTodoInput>) {
 	const now = util.time.nowISO8601()
 
 	const item = {
+		__typename: 'Todo',
 		id,
 		owner: identity.username,
 		createdAt: now,
