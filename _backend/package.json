@@ -11,7 +11,8 @@
 		"codegen:local": "AWS_PROFILE=focus-otter-sandbox npx @aws-amplify/cli codegen",
 		"build:resolvers": "node utils/build.mjs",
 		"predeploy": "npm run codegen && npm build:resolvers",
-		"deploy": "npx aws-cdk deploy"
+		"deploy": "npx aws-cdk deploy",
+		"deploy:local": "npx aws-cdk deploy --profile focus-otter-sandbox --outputs-file output.json"
 	},
 	"devDependencies": {
 		"@types/jest": "^29.5.11",

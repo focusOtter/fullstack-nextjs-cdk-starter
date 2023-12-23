@@ -1,10 +1,10 @@
 {
 	"globals": {
-		"appName": "test",
+		"appName": "fullstack-nextjs-cdk-starter",
 		"hosting": {
 			"ghTokenName": "github-token",
 			"ghOwner": "focusOtter",
-			"repo": "REPO_NAME"
+			"repo": "fullstack-nextjs-cdk-starter"
 		}
 	},
 	"main": {
