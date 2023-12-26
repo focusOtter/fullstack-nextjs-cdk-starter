@@ -17,6 +17,9 @@ async function TodosPage() {
 	return (
 		<main>
 			<h1 className="text-2xl">My Todos</h1>
+			<a href="/todos/new" className="btn btn-secondary">
+				Add Todo
+			</a>
 			<table className="table">
 				<thead>
 					<tr>
