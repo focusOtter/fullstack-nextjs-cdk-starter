@@ -1,13 +1,8 @@
-import {
-	AppSyncIdentityCognito,
-	Context,
-	Identity,
-	util,
-} from '@aws-appsync/utils'
+import { AppSyncIdentityCognito, Context, util } from '@aws-appsync/utils'
 import * as ddb from '@aws-appsync/utils/dynamodb'
-import { CreateTodoInput } from '../codegen/API'
+import { CreateTodoMutationVariables, Todo } from '../codegen/API'
 
-export function request(ctx: Context<CreateTodoInput>) {
+export function request(ctx: Context<CreateTodoMutationVariables>) {
 	const id = util.autoId()
 	const identity = ctx.identity as AppSyncIdentityCognito
 	const now = util.time.nowISO8601()
@@ -18,7 +13,7 @@ export function request(ctx: Context<CreateTodoInput>) {
 		owner: identity.username,
 		createdAt: now,
 		updatedAt: now,
-		...ctx.args,
+		...ctx.args.input,
 	}
 
 	// only signed in users can use this route based on schema.
@@ -30,5 +25,5 @@ export function request(ctx: Context<CreateTodoInput>) {
 }
 
 export function response(ctx: Context) {
-	return ctx.result
+	return ctx.result as Todo
 }

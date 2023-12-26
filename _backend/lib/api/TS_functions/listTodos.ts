@@ -1,12 +1,12 @@
 import { AppSyncIdentityCognito, Context } from '@aws-appsync/utils'
 import * as ddb from '@aws-appsync/utils/dynamodb'
-import { ListTodosQueryVariables } from '../codegen/API'
+import { ListTodosQueryVariables, PaginatedTodos } from '../codegen/API'
 
 // list only your todos
 export function request(ctx: Context<ListTodosQueryVariables>) {
-	const { sub } = ctx.identity as AppSyncIdentityCognito
+	const { username } = ctx.identity as AppSyncIdentityCognito
 	return ddb.query({
-		query: { __typename: { eq: 'Todo' }, owner: { eq: sub } },
+		query: { __typename: { eq: 'Todo' }, owner: { eq: username } },
 		index: 'todosByOwner',
 		limit: ctx.args.limit,
 		nextToken: ctx.args.nextToken,
@@ -14,6 +14,6 @@ export function request(ctx: Context<ListTodosQueryVariables>) {
 }
 
 export function response(ctx: Context) {
-	const { items: posts = [], nextToken } = ctx.result
-	return { posts, nextToken }
+	const { items: todos = [], nextToken } = ctx.result
+	return { todos, nextToken } as PaginatedTodos
 }
