@@ -23,7 +23,9 @@ async function Navbar() {
 	return (
 		<div className="navbar bg-base-100">
 			<div className="flex-1">
-				<a className="btn btn-ghost text-xl">Focus Otter</a>
+				<a href="/" className="btn btn-ghost text-xl">
+					Focus Otter
+				</a>
 			</div>
 			<div className="flex-none">
 				<ul className="menu menu-horizontal px-1">
@@ -31,7 +33,7 @@ async function Navbar() {
 						<a href="/todos">My Todos</a>
 					</li>
 					<li>
-						<SignOutButton />
+						<SignOutButton hasUser={hasUser} />
 					</li>
 				</ul>
 			</div>

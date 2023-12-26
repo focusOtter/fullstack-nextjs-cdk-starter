@@ -2,16 +2,25 @@
 
 import { signOut } from 'aws-amplify/auth'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
-export const SignOutButton = () => {
+type SignOutButtonProps = {
+	hasUser: boolean
+}
+export const SignOutButton = ({ hasUser }: SignOutButtonProps) => {
+	const [loggedInStatus, setLoggedInStatus] = useState(hasUser)
 	const router = useRouter()
 	return (
-		<button
-			onClick={() => {
-				signOut().then(() => router.push('/'))
-			}}
-		>
-			Sign Out
-		</button>
+		loggedInStatus && (
+			<button
+				onClick={() => {
+					signOut()
+						.then(() => setLoggedInStatus(false))
+						.then(() => router.push('/'))
+				}}
+			>
+				Sign Out
+			</button>
+		)
 	)
 }

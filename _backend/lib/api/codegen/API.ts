@@ -28,7 +28,7 @@ export type UpdateTodoInput = {
 
 export type PaginatedTodos = {
   __typename: "PaginatedTodos",
-  todos:  Array<Todo | null >,
+  todos:  Array<Todo >,
   nextToken?: string | null,
 };
 
@@ -117,7 +117,7 @@ export type ListTodosQuery = {
       owner: string,
       createdAt: string,
       updatedAt: string,
-    } | null >,
+    } >,
     nextToken?: string | null,
   },
 };

@@ -34,6 +34,6 @@ type Todo {
 }
 
 type PaginatedTodos {
-	todos: [Todo]!
+	todos: [Todo!]!
 	nextToken: String
 }
