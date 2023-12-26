@@ -18,9 +18,9 @@ input CreateTodoInput {
 
 input UpdateTodoInput {
 	id: ID!
-	title: String
-	description: String
-	isCompleted: Boolean
+	title: String!
+	description: String!
+	isCompleted: Boolean!
 }
 
 type Todo {

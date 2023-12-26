@@ -21,9 +21,9 @@ export type Todo = {
 
 export type UpdateTodoInput = {
   id: string,
-  title?: string | null,
-  description?: string | null,
-  isCompleted?: boolean | null,
+  title: string,
+  description: string,
+  isCompleted: boolean,
 };
 
 export type PaginatedTodos = {
