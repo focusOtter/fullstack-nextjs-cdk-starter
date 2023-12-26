@@ -1,28 +1,37 @@
 import React from 'react'
+import { cookies } from 'next/headers'
+import { getCurrentUser } from '@aws-amplify/auth/server'
+import { runWithAmplifyServerContext } from '@/utils/amplifyServerUtils'
+import { SignOutButton } from './SignOutButton'
 
-function Navbar() {
+// This page always dynamically renders per request
+export const dynamic = 'force-dynamic'
+
+async function Navbar() {
+	let hasUser
+	try {
+		const currentUser = await runWithAmplifyServerContext({
+			nextServerContext: { cookies },
+			operation: (contextSpec) => getCurrentUser(contextSpec),
+		})
+		hasUser = true
+	} catch (error) {
+		console.error(error)
+		hasUser = false
+	}
+
 	return (
 		<div className="navbar bg-base-100">
 			<div className="flex-1">
-				<a className="btn btn-ghost text-xl">daisyUI</a>
+				<a className="btn btn-ghost text-xl">Focus Otter</a>
 			</div>
 			<div className="flex-none">
 				<ul className="menu menu-horizontal px-1">
 					<li>
-						<a>Link</a>
+						<a href="/todos">My Todos</a>
 					</li>
 					<li>
-						<details>
-							<summary>Parent</summary>
-							<ul className="p-2 bg-base-100 rounded-t-none">
-								<li>
-									<a>Link 1</a>
-								</li>
-								<li>
-									<a>Link 2</a>
-								</li>
-							</ul>
-						</details>
+						<SignOutButton />
 					</li>
 				</ul>
 			</div>

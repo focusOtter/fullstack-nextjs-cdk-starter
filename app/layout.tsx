@@ -1,8 +1,12 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import '@aws-amplify/ui-react/styles.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+
+import '../awsconfig'
+import ConfigureAmplifyClientSide from './components/ConfigureAmplifyForClient'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,6 +23,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${inter.className} flex flex-col h-screen`}>
+				<ConfigureAmplifyClientSide />
 				<Navbar />
 				<main className="flex-1">{children}</main>
 				<Footer />
