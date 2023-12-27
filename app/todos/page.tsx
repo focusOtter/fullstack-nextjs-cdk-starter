@@ -1,12 +1,19 @@
 import { listTodos } from '@/_backend/lib/api/codegen/queries'
 import { cookieBasedClient } from '@/utils/amplifyServerUtils'
 
+export const dynamic = 'force-dynamic'
+
 // List all the todos for a user. Only authenticated users can view this page
-async function TodosPage() {
-	const fetchedTodos = await cookieBasedClient.graphql({
+async function fetchTodos() {
+	const todos = await cookieBasedClient.graphql({
 		query: listTodos,
 	})
 
+	return todos
+}
+
+async function TodosPage() {
+	const fetchedTodos = await fetchTodos()
 	const mySortedTodos = fetchedTodos.data.listTodos.todos.toSorted(
 		(a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
 	)
