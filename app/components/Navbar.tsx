@@ -3,21 +3,18 @@ import { getCurrentUser } from '@aws-amplify/auth/server'
 import { runWithAmplifyServerContext } from '@/utils/amplifyServerUtils'
 import { SignOutButton } from './SignOutButton'
 
-// This page always dynamically renders per request
-export const dynamic = 'force-dynamic'
-
 async function Navbar() {
-	let hasUser = false
-	try {
-		await runWithAmplifyServerContext({
-			nextServerContext: { cookies },
-			operation: (contextSpec) => getCurrentUser(contextSpec),
-		})
-		hasUser = true
-	} catch (error) {
-		// console.error(error)
-		hasUser = false
-	}
+	// let hasUser = false
+	// try {
+	// 	await runWithAmplifyServerContext({
+	// 		nextServerContext: { cookies },
+	// 		operation: (contextSpec) => getCurrentUser(contextSpec),
+	// 	})
+	// 	hasUser = true
+	// } catch (error) {
+	// 	console.log(error)
+	// 	hasUser = false
+	// }
 
 	return (
 		<div className="navbar bg-base-100">
@@ -31,9 +28,7 @@ async function Navbar() {
 					<li>
 						<a href="/todos">My Todos</a>
 					</li>
-					<li>
-						<SignOutButton hasUser={hasUser} />
-					</li>
+					<li>{/* <SignOutButton hasUser={hasUser} /> */}</li>
 				</ul>
 			</div>
 		</div>
