@@ -3,6 +3,8 @@ import { getCurrentUser } from '@aws-amplify/auth/server'
 import { runWithAmplifyServerContext } from '@/utils/amplifyServerUtils'
 import { SignOutButton } from './SignOutButton'
 
+// This page always dynamically renders per request
+export const dynamic = 'force-dynamic'
 async function Navbar() {
 	let hasUser = false
 	try {
