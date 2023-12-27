@@ -1,7 +1,6 @@
 type Query {
 	getTodo(id: String!): Todo! @aws_cognito_user_pools
 	listTodos(limit: Int, nextToken: String): PaginatedTodos!
-		@aws_iam
 		@aws_cognito_user_pools
 }
 
@@ -19,9 +18,9 @@ input CreateTodoInput {
 
 input UpdateTodoInput {
 	id: ID!
-	title: String
-	description: String
-	isCompleted: Boolean
+	title: String!
+	description: String!
+	isCompleted: Boolean!
 }
 
 type Todo {
@@ -30,11 +29,11 @@ type Todo {
 	description: String!
 	isCompleted: Boolean!
 	owner: String!
-	createdAt: AWSDateTime
-	updatedAt: AWSDateTime
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
 }
 
 type PaginatedTodos {
-	todos: [Todo]!
+	todos: [Todo!]!
 	nextToken: String
 }

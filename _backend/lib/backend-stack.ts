@@ -38,6 +38,13 @@ export class BackendStack extends cdk.Stack {
 			ghOwner: context.hosting.ghOwner,
 			ghTokenName: context.hosting.ghTokenName,
 			repo: context.hosting.repo,
+			environmentVariables: {
+				userPoolId: auth.userPool.userPoolId,
+				userPoolClientId: auth.userPoolClient.userPoolClientId,
+				identityPoolId: auth.identityPool.identityPoolId,
+				region: this.region,
+				apiUrl: api.graphqlUrl,
+			},
 		})
 
 		new cdk.CfnOutput(this, 'GraphQLAPIURL', {

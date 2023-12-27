@@ -1,11 +1,11 @@
 {
-  "fullstack-nextjs-cdk-starter-prod-Stack": {
-    "GraphQLAPIID": "asz5ehd6xvhyjjrg622wgvqt7i",
-    "UserPoolClientId": "3csio7t46o48j407nn2tb4cqai",
-    "UserPoolId": "us-east-1_8mTsxXov1",
-    "GraphQLAPIURL": "https://mlgty2p2qzbbvofftx5jtbg7nm.appsync-api.us-east-1.amazonaws.com/graphql",
+  "fullstack-nextjs-cdk-starter-dev-Stack": {
+    "GraphQLAPIID": "zzovtqmlr5hxthvyhmphikiogu",
+    "UserPoolClientId": "1ift24j13fh1eehb8fd18pifft",
+    "UserPoolId": "us-east-1_Qr1GV2oXn",
+    "GraphQLAPIURL": "https://w7v6bnc5uben7e7ktnru7xeyai.appsync-api.us-east-1.amazonaws.com/graphql",
     "Region": "us-east-1",
-    "IdentityPoolId": "us-east-1:1de4bf2b-3623-41f6-8754-05f269bbbcf3",
-    "AmplifyAppId": "d1c6nds1w8psdm"
+    "IdentityPoolId": "us-east-1:92996e3d-d439-4ca1-92b8-a191336c4e7c",
+    "AmplifyAppId": "d1knym8isb9xuy"
   }
 }

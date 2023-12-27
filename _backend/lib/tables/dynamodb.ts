@@ -14,5 +14,11 @@ export const createTodoTable = (scope: Construct, props: todoTableProps) => {
 		billingMode: BillingMode.PAY_PER_REQUEST,
 	})
 
+	table.addGlobalSecondaryIndex({
+		indexName: 'todosByOwner',
+		partitionKey: { name: '__typename', type: AttributeType.STRING },
+		sortKey: { name: 'owner', type: AttributeType.STRING },
+	})
+
 	return table
 }
