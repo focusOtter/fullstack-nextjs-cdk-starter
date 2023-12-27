@@ -7,7 +7,7 @@ import { SignOutButton } from './SignOutButton'
 export const dynamic = 'force-dynamic'
 
 async function Navbar() {
-	let hasUser
+	let hasUser = false
 	try {
 		await runWithAmplifyServerContext({
 			nextServerContext: { cookies },
@@ -15,7 +15,7 @@ async function Navbar() {
 		})
 		hasUser = true
 	} catch (error) {
-		console.error(error)
+		// console.error(error)
 		hasUser = false
 	}
 

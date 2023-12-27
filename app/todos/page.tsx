@@ -1,8 +1,6 @@
 import { listTodos } from '@/_backend/lib/api/codegen/queries'
 import { cookieBasedClient } from '@/utils/amplifyServerUtils'
 
-export const dynamic = 'force-dynamic'
-
 // List all the todos for a user. Only authenticated users can view this page
 async function fetchTodos() {
 	const todos = await cookieBasedClient.graphql({
