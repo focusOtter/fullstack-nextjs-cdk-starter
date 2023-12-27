@@ -6,7 +6,10 @@ function NewTodoPage() {
 	return (
 		<div>
 			<h1 className="text-2xl">New todo Page</h1>
-			<form action={CreateTodoAction} className="flex flex-col gap-2">
+			<form
+				action={CreateTodoAction}
+				className="flex flex-col gap-2 justify-center items-center"
+			>
 				<label className="form-control w-full max-w-xs">
 					<div className="label">
 						<span className="label-text">Title</span>

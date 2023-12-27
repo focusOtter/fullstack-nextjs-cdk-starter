@@ -18,7 +18,7 @@ async function EditTodoPage({ searchParams }: EditTodoPageProps) {
 			console.log(todoRes)
 			const todo = todoRes.data.getTodo
 			return (
-				<div>
+				<div className="flex flex-col justify-center items-center">
 					<h1>Edit Your Todo</h1>
 					<form action={DeleteTodoAction}>
 						<input type="hidden" name={'id'} value={todo.id} />
