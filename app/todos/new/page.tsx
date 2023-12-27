@@ -9,7 +9,7 @@ function NewTodoPage() {
 			<form action={CreateTodoAction} className="flex flex-col gap-2">
 				<label className="form-control w-full max-w-xs">
 					<div className="label">
-						<span className="label-text">Todo Title</span>
+						<span className="label-text">Title</span>
 					</div>
 					<input
 						name="title"
@@ -20,7 +20,7 @@ function NewTodoPage() {
 				</label>
 				<label className="form-control w-full max-w-xs">
 					<div className="label">
-						<span className="label-text">Todo Description</span>
+						<span className="label-text">Description</span>
 					</div>
 					<input
 						name="description"
@@ -29,14 +29,19 @@ function NewTodoPage() {
 						className="input input-bordered w-full max-w-xs"
 					/>
 				</label>
-				<select
-					defaultValue={'false'}
-					name="isCompleted"
-					className="select w-full max-w-xs"
-				>
-					<option value="true">True</option>
-					<option value="false">False</option>
-				</select>
+				<label className="form-control w-full max-w-xs">
+					<div className="label">
+						<span className="label-text">Is this completed?</span>
+					</div>
+					<select
+						defaultValue={'false'}
+						name="isCompleted"
+						className="select w-full max-w-xs"
+					>
+						<option value="true">True</option>
+						<option value="false">False</option>
+					</select>
+				</label>
 				<button className="btn btn-primary w-full max-w-xs" type="submit">
 					Submit
 				</button>

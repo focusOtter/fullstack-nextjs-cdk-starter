@@ -1,5 +1,7 @@
 import { listTodos } from '@/_backend/lib/api/codegen/queries'
 import { cookieBasedClient } from '@/utils/amplifyServerUtils'
+import { TodoList } from '../components/TodoList'
+import Link from 'next/link'
 
 // List all the todos for a user. Only authenticated users can view this page
 async function fetchTodos() {
@@ -17,15 +19,12 @@ async function TodosPage() {
 		(a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
 	)
 
-	console.log(fetchedTodos.data.listTodos.todos)
-	console.log(mySortedTodos)
-
 	return (
 		<main>
 			<h1 className="text-2xl">My Todos</h1>
-			<a href="/todos/new" className="btn btn-secondary">
+			<Link href="/todos/new" className="btn btn-secondary">
 				Add Todo
-			</a>
+			</Link>
 			<table className="table">
 				<thead>
 					<tr>
@@ -44,13 +43,15 @@ async function TodosPage() {
 						)
 
 						return (
-							<tr className="hover" key={todo?.id}>
-								<th>{index + 1}</th>
-								<td>{todo.title}</td>
-								<td>{todo.description}</td>
-								<td>{String(todo.isCompleted)}</td>
-								<td>{formattedDate}</td>
-							</tr>
+							<TodoList
+								key={todo.id}
+								id={todo.id}
+								title={todo.title}
+								description={todo.description}
+								createdAt={formattedDate}
+								isCompleted={String(todo.isCompleted)}
+								index={index + 1}
+							/>
 						)
 					})}
 				</tbody>
