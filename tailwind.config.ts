@@ -7,5 +7,8 @@ const config: Config = {
 		'./app/**/*.{js,ts,jsx,tsx,mdx}',
 	],
 	plugins: [require('daisyui')],
+	daisyui: {
+		themes: ['pastel', 'synthwave'],
+	},
 }
 export default config
