@@ -12,7 +12,8 @@ async function fetchTodos() {
 
 async function TodosPage() {
 	const fetchedTodos = await fetchTodos()
-	const mySortedTodos = fetchedTodos.data.listTodos.todos.toSorted(
+
+	const mySortedTodos = [...fetchedTodos.data.listTodos.todos].sort(
 		(a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
 	)
 
