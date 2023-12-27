@@ -3,8 +3,8 @@ import { Inter } from 'next/font/google'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ConfigureAmplifyClientSide from './components/ConfigureAmplifyForClient'
-import '@aws-amplify/ui-react/styles.css'
 import './globals.css'
+import '@aws-amplify/ui-react/styles.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
