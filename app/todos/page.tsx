@@ -21,10 +21,12 @@ async function TodosPage() {
 
 	return (
 		<main>
-			<h1 className="text-2xl">My Todos</h1>
-			<Link href="/todos/new" className="btn btn-secondary">
-				Add Todo
-			</Link>
+			<h1 className="text-2xl text-center">My Todos</h1>
+			<div className="flex justify-end mr-6">
+				<Link href="/todos/new" className="btn btn-secondary ">
+					Add Todo
+				</Link>
+			</div>
 			<table className="table">
 				<thead>
 					<tr>
