@@ -82,7 +82,7 @@ Let's assume you've forked and cloned the repo. You'll be on the `main` branch. 
 cd _backend && npm i && cd .. && npm i
 ```
 
-2. **Update the `cdk.context.json` values**: Probably the most important step. These values need to correspond to your project details. Note that if you change the appName, you'll also want to change the `awsconfig.ts` frontend file to match as well. It follows an `${appName}-${stage}-Stack` convention. Also the value for `ghTokenName` is the name of the key stored in AWS Secrets Manager. If video is your thing, I have a ![youtube video](https://www.youtube.com/watch?v=6-Z7xJCp-Zw&t=423s) that covers most of this in a separate app!
+2. **Update the `cdk.context.json` values**: Probably the most important step. These values need to correspond to your project details. Note that if you change the appName, you'll also want to change the `awsconfig.ts` frontend file to match as well. It follows an `${appName}-${stage}-Stack` convention. Also the value for `ghTokenName` is the name of the key stored in AWS Secrets Manager. If video is your thing, I have a [youtube video](https://www.youtube.com/watch?v=6-Z7xJCp-Zw&t=423s) that covers most of this in a separate app!
 3. Update deploy:local script in `_backend/package.json` as needed
 4. Checkout to your `dev` branch.
 5. Run the `deploy:local` script.
