@@ -8,7 +8,7 @@ export default function Home() {
 					alt="spiderman pic"
 				/>
 				<div>
-					<h1 className="text-5xl font-bold">NextJS 🫶🏽 AppSync Todos!</h1>
+					<h1 className="text-5xl font-bold"> NextJS 🫶🏽 AppSync Todos!</h1>
 					<p className="py-6">
 						This is a sample app that uses NextJS 14, DaisyUI, and AWS Amplify
 						libraries on the frontend. The backend is built with the AWS CDK and

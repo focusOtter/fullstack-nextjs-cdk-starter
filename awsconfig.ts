@@ -1,6 +1,6 @@
 import cdkoutput from './_backend/output.json'
 
-const output = cdkoutput['fullstack-nextjs-cdk-starter-dev-Stack']
+const output = cdkoutput['todos-cdk-starter-kit-dev-Stack']
 
 export const config = {
 	Auth: {

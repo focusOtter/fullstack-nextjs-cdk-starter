@@ -4,6 +4,7 @@ import {
 	IdentityPool,
 	UserPoolAuthenticationProvider,
 } from '@aws-cdk/aws-cognito-identitypool-alpha'
+import { RemovalPolicy } from 'aws-cdk-lib'
 
 type CreateAuthProps = {
 	appName: string
@@ -26,6 +27,7 @@ export function createAuth(scope: Construct, props: CreateAuthProps) {
 				mutable: true,
 			},
 		},
+		removalPolicy: RemovalPolicy.DESTROY
 	})
 
 	const userPoolClient = new awsCognito.UserPoolClient(

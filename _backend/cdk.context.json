@@ -1,31 +1,31 @@
 {
 	"globals": {
-		"appName": "fullstack-nextjs-cdk-starter",
+		"appName": "todos-cdk-starter-kit",
 		"hosting": {
-			"ghTokenName": "github-token",
-			"ghOwner": "focusOtter",
-			"repo": "fullstack-nextjs-cdk-starter"
+			"ghTokenName": "github-token-2",
+            "ghOwner": "daspapan",
+            "repo": "nextjs-cdk-starter"
 		}
 	},
 	"main": {
 		"stage": "prod",
 		"env": {
-			"account": "842537737558",
-			"region": "us-east-1"
+			"account": "0123",
+			"region": "ap-south-1"
 		}
 	},
 	"staging": {
 		"stage": "staging",
 		"env": {
-			"account": "123",
-			"region": "us-east-1"
+			"account": "0123",
+			"region": "ap-south-1"
 		}
 	},
 	"develop": {
 		"stage": "dev",
 		"env": {
-			"account": "842537737558",
-			"region": "us-east-1"
+			"account": "919620897356",
+			"region": "ap-south-1"
 		}
 	}
 }
